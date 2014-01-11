@@ -1,0 +1,45 @@
+{
+  "name": "replace-all",
+  "version": "0.0.1",
+  "description": "Replaces all occurrences of multiple regular expressions",
+  "main": "./lib/replaceAll.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha -R spec"
+  },
+  "keywords": [
+    "replace",
+    "bulk",
+    "multiple",
+    "all",
+    "regex",
+    "string",
+    "enhance",
+    "text"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "1.x",
+    "chai": "1.x",
+    "sinon-chai": "2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peerigon/replace-all.git"
+  },
+  "testling": {
+    "harness" : "mocha",
+    "files": "test/*.js",
+    "browsers": {
+      "iexplore": [6, 7, 8, 9, 10],
+      "chrome": [15, 20, 25, "canary"],
+      "firefox": [15, 20, 22, "nightly"],
+      "safari": [5, 6],
+      "opera": [10, 11, 12, "next"],
+      "iphone": [6],
+      "ipad": [6],
+      "android-browser": [4.2]
+    }
+  },
+  "author": "peerigon <developers@peerigon.com>",
+  "license": "MIT"
+}
