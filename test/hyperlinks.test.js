@@ -54,4 +54,19 @@ describe("hyperlinks", function () {
         );
     });
 
+    it("should provide the possibilty to override the hyperlink generator", function () {
+        var hyperlink = hyperlinks.hyperlink;
+
+        hyperlinks.hyperlink = function (url, match) {
+            expect(url).to.equal("http://example.com");
+            expect(match).to.equal("example.com");
+
+            return "it works";
+        };
+        expect(replaceAll("example.com", hyperlinks)).to.equal("it works");
+
+        // restore original hyperlink generator
+        hyperlinks.hyperlink = hyperlink;
+    });
+
 });

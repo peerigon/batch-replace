@@ -11,6 +11,8 @@
  * Override this method if you need to customize the returned <a>-tag.
  */
 
+var httpPattern = /^https?:\/\//i;
+
 /**
  * Matches actual urls and url-like patterns for instance:
  * - http://example.com
@@ -20,11 +22,9 @@
  *
  * @type {RegExp}
  */
-var urlPattern = /\S{2,256}\.[a-z]{2,3}(\/\S*)?/g;
+exports.pattern = /\S{2,256}\.[a-z]{2,3}(\/\S*)?/g;
 
-var httpPattern = /^https?:\/\//i;
-
-function replace(match) {
+exports.replace = function (match) {
     var url = "";
 
     if (httpPattern.test(match[0]) === false) {
@@ -32,13 +32,9 @@ function replace(match) {
     }
     url += match[0];
 
-    return hyperlink(url, match[0]);
-}
+    return exports.hyperlink(url, match[0]);
+};
 
-function hyperlink(url, match) {
+exports.hyperlink = function (url, match) {
     return '<a href="' + url + '" target="_blank">' + match + "</a>";
-}
-
-exports.pattern = urlPattern;
-exports.replace = replace;
-exports.hyperlink = hyperlink;
+};
