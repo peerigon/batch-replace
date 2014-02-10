@@ -54,7 +54,7 @@ describe("hyperlinks", function () {
         );
     });
 
-    it("should provide the possibilty to override the hyperlink generator", function () {
+    it("should provide the possibility to override the hyperlink generator", function () {
         var hyperlink = hyperlinks.hyperlink;
 
         hyperlinks.hyperlink = function (url, match) {
