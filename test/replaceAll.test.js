@@ -21,6 +21,33 @@ var ab = {
         replace: function () { return " "; }
     };
 
+describe("replaceAll", function () {
+
+    describe(".module(name, object)", function () {
+
+        it("should provide a function under the given module name", function () {
+            replaceAll.module("newModule", {});
+
+            expect(replaceAll.newModule).to.be.a("function");
+        });
+
+        it("should add a chainable module function", function () {
+            var str;
+
+            replaceAll.module("ab", ab);
+            replaceAll.module("bc", bc);
+
+            str = replaceAll.ab().bc("ab");
+            expect(str).to.equal("bc");
+
+            str = replaceAll.ab("ab");
+            expect(str).to.equal("bb");
+        });
+
+    });
+
+});
+
 describe("replaceAll(str, modules)", function () {
     var result;
 
@@ -38,10 +65,11 @@ describe("replaceAll(str, modules)", function () {
     });
 
     it("should turn modules to an array if it is no array", function () {
-        result = replaceAll(
-            "a a b",
-            [ab, bc]
-        );
+        expect(replaceAll("a a b", ab)).to.equal("b b b");
+    });
+
+    it("should apply the latter module if both modules are trying to replace the same string", function () {
+        expect(replaceAll("b", [everythingToWhitespace, bc])).to.equal("c");
     });
 
     describe("if str is an empty string", function () {
@@ -129,7 +157,7 @@ describe("replaceAll(str, modules)", function () {
             expect(replaceAll("aaa", [everythingToWhitespace])).to.equal("   ");
         });
 
-        it("should not be messed up by strings with different lengths", function () {
+        it("should not be messed up by replacements with different lengths", function () {
             var one = [1, 11, 111, 1111],
                 two = [2222, 222, 22, 2],
                 i = 0,
