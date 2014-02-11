@@ -3,7 +3,7 @@
 var chai = require("chai"),
     sinon = require("sinon"),
     expect = chai.expect,
-    replaceAll = require("../" + require("../package.json").main);
+    replace = require("../" + require("../package.json").main);
 
 chai.Assertion.includeStack = true;
 chai.use(require("sinon-chai"));
@@ -21,26 +21,26 @@ var ab = {
         replace: function () { return " "; }
     };
 
-describe("replaceAll", function () {
+describe("replace", function () {
 
     describe(".module(name, object)", function () {
 
         it("should provide a function under the given module name", function () {
-            replaceAll.module("newModule", {});
+            replace.module("newModule", {});
 
-            expect(replaceAll.newModule).to.be.a("function");
+            expect(replace.newModule).to.be.a("function");
         });
 
         it("should add a chainable module function", function () {
             var str;
 
-            replaceAll.module("ab", ab);
-            replaceAll.module("bc", bc);
+            replace.module("ab", ab);
+            replace.module("bc", bc);
 
-            str = replaceAll.ab().bc().in("ab");
+            str = replace.ab().bc().in("ab");
             expect(str).to.equal("bc");
 
-            str = replaceAll.ab().in("ab");
+            str = replace.ab().in("ab");
             expect(str).to.equal("bb");
         });
 
@@ -48,18 +48,18 @@ describe("replaceAll", function () {
 
 });
 
-describe("replaceAll(pattern)", function () {
+describe("replace(pattern)", function () {
 
     it("should provide a nice chainable api for replace operations", function () {
         // unfortunately we need to escape the nice api so ES3 environments don't
         // have problems parsing the file
-        var str = replaceAll(/a/g)["with"]("b")
+        var str = replace(/a/g)["with"]("b")
             .and(/b/g)["with"](function () { return "c"; })
             ["in"]("ab");
 
         expect(str).to.equal("bc");
 
-        str = replaceAll(/./g)["with"](" ")
+        str = replace(/./g)["with"](" ")
             .and(/a/g)["with"]("b")
             ["in"]("ab");
 
@@ -68,11 +68,11 @@ describe("replaceAll(pattern)", function () {
 
 });
 
-describe("replaceAll(str, modules)", function () {
+describe("replace(str, modules)", function () {
     var result;
 
     it("should apply all modules on the original string", function () {
-        result = replaceAll(
+        result = replace(
             "a a b",
             [ab, bc]
         );
@@ -85,17 +85,17 @@ describe("replaceAll(str, modules)", function () {
     });
 
     it("should turn modules to an array if it is no array", function () {
-        expect(replaceAll("a a b", ab)).to.equal("b b b");
+        expect(replace("a a b", ab)).to.equal("b b b");
     });
 
     it("should apply the latter module if both modules are trying to replace the same string", function () {
-        expect(replaceAll("b", [everythingToWhitespace, bc])).to.equal("c");
+        expect(replace("b", [everythingToWhitespace, bc])).to.equal("c");
     });
 
     describe("if str is an empty string", function () {
 
         it("should just return str", function () {
-            expect(replaceAll("", [ab])).to.equal("");
+            expect(replace("", [ab])).to.equal("");
         });
 
     });
@@ -103,7 +103,7 @@ describe("replaceAll(str, modules)", function () {
     describe("if the whole string matches the pattern", function () {
 
         it("should work as expected", function () {
-            expect(replaceAll("a", [ab])).to.equal("b");
+            expect(replace("a", [ab])).to.equal("b");
         });
 
     });
@@ -111,7 +111,7 @@ describe("replaceAll(str, modules)", function () {
     describe("if there is a sequence of matches", function () {
 
         it("should work as expected", function () {
-            expect(replaceAll("aaa", [ab])).to.equal("bbb");
+            expect(replace("aaa", [ab])).to.equal("bbb");
         });
 
     });
@@ -119,7 +119,7 @@ describe("replaceAll(str, modules)", function () {
     describe("if there is a string between two matches", function () {
 
         it("should work as expected", function () {
-            expect(replaceAll("a - a", [ab])).to.equal("b - b");
+            expect(replace("a - a", [ab])).to.equal("b - b");
         });
 
     });
@@ -127,7 +127,7 @@ describe("replaceAll(str, modules)", function () {
     describe("if there is a string before the first match", function () {
 
         it("should work as expected", function () {
-            expect(replaceAll("- a", [ab])).to.equal("- b");
+            expect(replace("- a", [ab])).to.equal("- b");
         });
 
     });
@@ -135,7 +135,7 @@ describe("replaceAll(str, modules)", function () {
     describe("if there is a string after the last match", function () {
 
         it("should work as expected", function () {
-            expect(replaceAll("a -", [ab])).to.equal("b -");
+            expect(replace("a -", [ab])).to.equal("b -");
         });
 
     });
@@ -143,7 +143,7 @@ describe("replaceAll(str, modules)", function () {
     describe("if there is no match at all", function () {
 
         it("should not modify the str", function () {
-            expect(replaceAll("---", [ab])).to.equal("---");
+            expect(replace("---", [ab])).to.equal("---");
         });
 
     });
@@ -158,7 +158,7 @@ describe("replaceAll(str, modules)", function () {
         it("should pass every match one after another to the replace-function", function () {
             var matchABC =  /[abc]/g;
 
-            replaceAll("abc", [{
+            replace("abc", [{
                 pattern: matchABC,
                 replace: spy
             }]);
@@ -174,7 +174,7 @@ describe("replaceAll(str, modules)", function () {
         });
 
         it("should use the function's return value as replacement", function () {
-            expect(replaceAll("aaa", [everythingToWhitespace])).to.equal("   ");
+            expect(replace("aaa", [everythingToWhitespace])).to.equal("   ");
         });
 
         it("should not be messed up by replacements with different lengths", function () {
@@ -184,7 +184,7 @@ describe("replaceAll(str, modules)", function () {
                 j = 0,
                 result;
 
-            result = replaceAll("a b a b a b a b", [
+            result = replace("a b a b a b a b", [
                 {
                     pattern: /a/g,
                     replace: function () {

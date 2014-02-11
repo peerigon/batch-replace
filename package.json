@@ -2,7 +2,7 @@
   "name": "replace-all",
   "version": "0.0.1",
   "description": "Replaces all occurrences of multiple regular expressions",
-  "main": "./lib/replaceAll.js",
+  "main": "./lib/replace.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha -R spec"
   },
