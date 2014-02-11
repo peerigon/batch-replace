@@ -37,10 +37,10 @@ describe("replaceAll", function () {
             replaceAll.module("ab", ab);
             replaceAll.module("bc", bc);
 
-            str = replaceAll.ab().bc("ab");
+            str = replaceAll.ab().bc().in("ab");
             expect(str).to.equal("bc");
 
-            str = replaceAll.ab("ab");
+            str = replaceAll.ab().in("ab");
             expect(str).to.equal("bb");
         });
 
