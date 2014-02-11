@@ -1,7 +1,7 @@
 {
-  "name": "replace-all",
+  "name": "batch-replace",
   "version": "0.0.1",
-  "description": "Replaces all occurrences of multiple regular expressions",
+  "description": "Perform multiple str.replace() with one operation",
   "main": "./lib/replace.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha -R spec"
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/peerigon/replace-all.git"
+    "url": "https://github.com/peerigon/batch-replace.git"
   },
   "testling": {
     "harness" : "mocha",
