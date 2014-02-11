@@ -48,6 +48,26 @@ describe("replaceAll", function () {
 
 });
 
+describe("replaceAll(pattern)", function () {
+
+    it("should provide a nice chainable api for replace operations", function () {
+        // unfortunately we need to escape the nice api so ES3 environments don't
+        // have problems parsing the file
+        var str = replaceAll(/a/g)["with"]("b")
+            .and(/b/g)["with"](function () { return "c"; })
+            ["in"]("ab");
+
+        expect(str).to.equal("bc");
+
+        str = replaceAll(/./g)["with"](" ")
+            .and(/a/g)["with"]("b")
+            ["in"]("ab");
+
+        expect(str).to.equal("b ");
+    });
+
+});
+
 describe("replaceAll(str, modules)", function () {
     var result;
 
