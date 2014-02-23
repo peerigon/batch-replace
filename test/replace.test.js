@@ -46,6 +46,25 @@ describe("replace", function () {
 
     });
 
+    describe(".queue()", function () {
+
+        it("should return a function", function () {
+            expect(replace.queue()).to.be.a("function");
+        });
+
+        it("should return the current queue as standalone function", function () {
+            var queue = replace(/a/g).with("b")
+                .and(/b/g).with("c")
+                .queue();
+
+            // Override the current queue to test if the returned queue is standalone
+            replace(/a/g).with("A").and(/b/g).with("B");
+
+            expect(queue("ababab")).to.equal("bcbcbc");
+        });
+
+    });
+
 });
 
 describe("replace(pattern)", function () {
