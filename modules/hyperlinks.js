@@ -22,7 +22,7 @@ var httpPattern = /^https?:\/\//i;
  *
  * @type {RegExp}
  */
-exports.pattern = /\S{2,256}\.[a-z]{2,3}(\/\S*)?/g;
+exports.pattern = /\S{2,256}\.[a-z]{2,3}(\/[^\s,.:]*)?/g;
 
 exports.replace = function (match) {
     var url = "";
