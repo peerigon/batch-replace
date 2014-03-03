@@ -3,7 +3,7 @@
 var chai = require("chai"),
     expect = chai.expect,
     replace = require("../" + require("../package.json").main),
-    hyperlinks = require("../modules/hyperlinks.js");
+    hyperlinks = require("../plugins/hyperlinks.js");
 
 chai.Assertion.includeStack = true;
 chai.use(require("sinon-chai"));
@@ -82,6 +82,12 @@ describe("hyperlinks", function () {
 
         // restore original hyperlink generator
         hyperlinks.hyperlink = hyperlink;
+    });
+
+    it("should be use-able as plugin", function () {
+        expect(replace).to.not.have.property("hyperlinks");
+        replace.use(hyperlinks);
+        expect(replace.hyperlinks).to.be.a("function");
     });
 
 });
