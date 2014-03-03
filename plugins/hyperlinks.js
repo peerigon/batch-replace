@@ -13,6 +13,10 @@
 
 var httpPattern = /^https?:\/\//i;
 
+function hyperlinksPlugin(replace) {
+    replace.module("hyperlinks", hyperlinksPlugin);
+}
+
 /**
  * Matches actual urls and url-like patterns for instance:
  * - http://example.com
@@ -22,13 +26,13 @@ var httpPattern = /^https?:\/\//i;
  *
  * @type {RegExp}
  */
-exports.pattern = /\S{2,256}\.[a-z]{2,3}(\/[^\s,.:]*)?/g;
+hyperlinksPlugin.pattern = /\S{2,256}\.[a-z]{2,3}(\/[^\s,.:]*)?/g;
 
 /**
  * @param {object} match
  * @returns {string}
  */
-exports.replace = function (match) {
+hyperlinksPlugin.replace = function (match) {
     var url = "";
 
     if (httpPattern.test(match[0]) === false) {
@@ -36,7 +40,7 @@ exports.replace = function (match) {
     }
     url += match[0];
 
-    return exports.hyperlink(url, match[0]);
+    return hyperlinksPlugin.hyperlink(url, match[0]);
 };
 
 /**
@@ -46,6 +50,8 @@ exports.replace = function (match) {
  * @param {string} str
  * @returns {string}
  */
-exports.hyperlink = function (url, str) {
+hyperlinksPlugin.hyperlink = function (url, str) {
     return '<a href="' + url + '" target="_blank">' + str + "</a>";
 };
+
+module.exports = hyperlinksPlugin;
