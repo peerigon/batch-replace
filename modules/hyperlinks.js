@@ -24,6 +24,10 @@ var httpPattern = /^https?:\/\//i;
  */
 exports.pattern = /\S{2,256}\.[a-z]{2,3}(\/[^\s,.:]*)?/g;
 
+/**
+ * @param {object} match
+ * @returns {string}
+ */
 exports.replace = function (match) {
     var url = "";
 
@@ -35,6 +39,13 @@ exports.replace = function (match) {
     return exports.hyperlink(url, match[0]);
 };
 
-exports.hyperlink = function (url, match) {
-    return '<a href="' + url + '" target="_blank">' + match + "</a>";
+/**
+ * Generates an html string.
+ *
+ * @param {string} url
+ * @param {string} str
+ * @returns {string}
+ */
+exports.hyperlink = function (url, str) {
+    return '<a href="' + url + '" target="_blank">' + str + "</a>";
 };
