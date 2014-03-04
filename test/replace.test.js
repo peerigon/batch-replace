@@ -37,10 +37,10 @@ describe("replace", function () {
             replace.module("ab", ab);
             replace.module("bc", bc);
 
-            str = replace.ab().bc().in("ab");
+            str = replace.ab().bc()["in"]("ab");
             expect(str).to.equal("bc");
 
-            str = replace.ab().in("ab");
+            str = replace.ab()["in"]("ab");
             expect(str).to.equal("bb");
         });
 
@@ -53,12 +53,12 @@ describe("replace", function () {
         });
 
         it("should return the current queue as standalone function", function () {
-            var queue = replace(/a/g).with("b")
-                .and(/b/g).with("c")
+            var queue = replace(/a/g)["with"]("b")
+                .and(/b/g)["with"]("c")
                 .queue();
 
             // Override the current queue to test if the returned queue is standalone
-            replace(/a/g).with("A").and(/b/g).with("B");
+            replace(/a/g)["with"]("A").and(/b/g)["with"]("B");
 
             expect(queue("ababab")).to.equal("bcbcbc");
         });
