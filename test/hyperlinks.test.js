@@ -8,6 +8,8 @@ var chai = require("chai"),
 chai.Assertion.includeStack = true;
 chai.use(require("sinon-chai"));
 
+require("./polyfills.js");
+
 describe("hyperlinks", function () {
 
     it("should replace actual urls with hyperlinks", function () {

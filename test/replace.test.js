@@ -8,6 +8,8 @@ var chai = require("chai"),
 chai.Assertion.includeStack = true;
 chai.use(require("sinon-chai"));
 
+require("./polyfills.js");
+
 var ab = {
         pattern: /a/g,
         replace: "b"
