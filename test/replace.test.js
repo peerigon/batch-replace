@@ -1,5 +1,7 @@
 "use strict";
 
+require("./polyfills.js");
+
 var chai = require("chai"),
     sinon = require("sinon"),
     expect = chai.expect,
@@ -7,8 +9,6 @@ var chai = require("chai"),
 
 chai.Assertion.includeStack = true;
 chai.use(require("sinon-chai"));
-
-require("./polyfills.js");
 
 var ab = {
         pattern: /a/g,

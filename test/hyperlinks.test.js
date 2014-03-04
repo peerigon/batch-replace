@@ -1,5 +1,7 @@
 "use strict";
 
+require("./polyfills.js");
+
 var chai = require("chai"),
     expect = chai.expect,
     replace = require("../lib/replace.js"),
@@ -7,8 +9,6 @@ var chai = require("chai"),
 
 chai.Assertion.includeStack = true;
 chai.use(require("sinon-chai"));
-
-require("./polyfills.js");
 
 describe("hyperlinks", function () {
 
