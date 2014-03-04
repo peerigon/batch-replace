@@ -2,7 +2,7 @@ batch-replace
 ===========
 **Perform multiple str.replace() with one operation.**
 
-In some situations it's not possible to chain multiple calls of `replace()`, because you don't want to pass the result of the first operation to the second:
+In some situations it's not possible to chain multiple calls of `replace()` because you don't want to pass the result of the first operation to the second:
 
 ```javascript
 "ab".replace(/a/g, "b")
@@ -15,7 +15,7 @@ With **batch-replace** it's possible to replace all patterns at once:
 var replace = require("batch-replace");
 
 replace(/a/g).with("b")
-    .and(/b/g).with("c)
+    .and(/b/g).with("c")
     .in("ab"); // returns bc
 ```
 
@@ -94,15 +94,13 @@ replace.abcToUppercase().in("abcdefgh"); // returns "ABCdefgh"
 This module wraps all url-like patterns in a text with `<a>`-tags:
 
 ```javascript
-var hyperlinks = require("batch-replace/plugins/hyperlinks");
- 
-replace.use(hyperlinks);
+replace.use(require("batch-replace/plugins/hyperlinks"));
 
 replace.hyperlinks().in("Hi, please take a look at example.com");
 // returns 'Hi, please take a look at <a href="http://example.com" target="_blank">example.com</a>'
 ```
 
-If you need to modify the generated html, just overwrite the `hyperlinks.hyperlink`-function just like that:
+In case you need to modify the generated html just overwrite the `hyperlink`-function just like that:
 
 ```javascript
 var hyperlinks = require("batch-replace/plugins/hyperlinks");
@@ -148,11 +146,11 @@ Publishes the `module` under `replace[name]`. Write replacement modules for comm
 Compatibility
 ------------
 
-It is worth noting that the current api is not designed for ES3-environments (like < IE9 and Android 2.x) due usage of reserved words like `with` and `in`. If you need to support these environments and you don't want to use bracket notation (e.g. `["in"]`), you can also use the "ugly api":
+It is worth noting that the current api is not designed for ES3-environments (IE8 and Android 2.x) due usage of reserved keywords like `with` and `in`. If you need to support these environments and you don't want to use bracket notation (e.g. `["in"]`), you can also use the "ugly api":
 
-### replace(str: String, replacementModules: Array): String
+### replace(str: String, modules: Array): String
 
-Applies the `replacementModules` on the given string and returns the result. Example:
+Applies all `modules` on the given string and returns the result. Example:
 
 ```javascript
 replace("abcd", [
