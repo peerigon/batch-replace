@@ -1,5 +1,5 @@
 batch-replace
-===========
+========================================================================
 **Perform multiple str.replace() with one operation.**
 
 In some situations it's not possible to chain multiple calls of `replace()` because you don't want to pass the result of the first operation to the second:
@@ -37,22 +37,24 @@ enhanceMessage("Check out nodejs.org :)");
 // returns 'Check out <a href="http://nodejs.org" target="_blank">nodejs.org</a> <img srg="/img/smilies/grin.jpg" />'
 ```
 
-[![browser support](https://ci.testling.com/peerigon/batch-replace.png)
-](https://ci.testling.com/peerigon/batch-replace)<br>
-[![Build Status](https://travis-ci.org/peerigon/batch-replace.png)](http://travis-ci.org/peerigon/batch-replace)
-[![Dependency Status](https://david-dm.org/peerigon/batch-replace/status.png)](http://david-dm.org/peerigon/batch-replace)
-
 <br />
 
-Installation
-------------
+Setup
+------------------------------------------------------------------------
 
-`npm install batch-replace`
+[![npm status](https://nodei.co/npm/batch-replace.png?downloads=true&stars=true)](https://npmjs.org/package/batch-replace)
+
+[![build status](https://travis-ci.org/peerigon/batch-replace.png)](http://travis-ci.org/peerigon/batch-replace)
+[![dependencies](https://david-dm.org/peerigon/batch-replace.png)](http://david-dm.org/peerigon/batch-replace)
+[![devDependencies](https://david-dm.org/peerigon/batch-replace/dev-status.png)](http://david-dm.org/peerigon/batch-replace#info=devDependencies)
+
+[![browser support](https://ci.testling.com/peerigon/batch-replace.png)
+](https://ci.testling.com/peerigon/batch-replace)
 
 <br />
 
 Replacement modules
-------------
+------------------------------------------------------------------------
 
 A replacement module is an object with a `pattern`- and a `replace`-property:
 
@@ -117,7 +119,7 @@ hyperlinks.hyperlink = function (url, str) {
 <br />
 
 API
-------------
+------------------------------------------------------------------------
 
 ### replace(pattern: RegExp)
 
@@ -146,7 +148,7 @@ Publishes the `module` under `replace[name]`. Write replacement modules for comm
 <br />
 
 Compatibility
-------------
+------------------------------------------------------------------------
 
 It is worth noting that the current api is not designed for ES3-environments (IE8 and Android 2.x) due usage of reserved keywords like `with` and `in`. If you need to support these environments and you don't want to use bracket notation (e.g. `["in"]`), you can also use the "ugly api":
 
@@ -167,11 +169,11 @@ replace("abcd", [
 ]); // returns 'bccd'
 ```
 
-**batch-replace** requires several polyfills for ES5-features. Check out `test/polyfills.js`.
+**batch-replace** requires several polyfills for ES5-features, so you should be sure to include [es5-shims](https://github.com/es-shims/es5-shim).
 
 <br />
 
 License
--------
+------------------------------------------------------------------------
 
 MIT
