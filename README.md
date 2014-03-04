@@ -167,6 +167,8 @@ replace("abcd", [
 ]); // returns 'bccd'
 ```
 
+**batch-replace** requires several polyfills for ES5-features. Check out `test/polyfills.js`.
+
 <br />
 
 License
