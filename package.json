@@ -1,10 +1,11 @@
 {
   "name": "batch-replace",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Perform multiple str.replace() with one operation",
   "main": "./lib/replace.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha test/main.js -R spec"
+    "test": "node node_modules/mocha/bin/mocha test/main.js -R spec",
+    "test-browser": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js mocha\\!./test/main.js"
   },
   "keywords": [
     "replace",
@@ -21,7 +22,9 @@
   "devDependencies": {
     "mocha": "1.x",
     "chai": "1.x",
-    "sinon-chai": "2.x"
+    "sinon-chai": "2.x",
+    "webpack-dev-server": "1.x",
+    "mocha-loader": "0.x"
   },
   "repository": {
     "type": "git",
