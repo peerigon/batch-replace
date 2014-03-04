@@ -1,7 +1,5 @@
 "use strict";
 
-require("./polyfills.js");
-
 var chai = require("chai"),
     expect = chai.expect,
     replace = require("../lib/replace.js"),

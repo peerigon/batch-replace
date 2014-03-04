@@ -1,7 +1,5 @@
 "use strict";
 
-require("./polyfills.js");
-
 var chai = require("chai"),
     sinon = require("sinon"),
     expect = chai.expect,

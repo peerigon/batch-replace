@@ -1,14 +1,15 @@
 {
   "name": "batch-replace",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Perform multiple str.replace() with one operation",
   "main": "./lib/replace.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha -R spec"
+    "test": "node node_modules/mocha/bin/mocha test/main.js -R spec"
   },
   "keywords": [
     "replace",
     "bulk",
+    "batch",
     "multiple",
     "all",
     "regex",
@@ -28,17 +29,17 @@
   },
   "testling": {
     "harness" : "mocha",
-    "files": "test/*.js",
-    "browsers": {
-      "iexplore": [6, 7, 8, 9, 10],
-      "chrome": [15, 20, 25, "canary"],
-      "firefox": [15, 20, 22, "nightly"],
-      "safari": [5, 6],
-      "opera": [10, 11, 12, "next"],
-      "iphone": [6],
-      "ipad": [6],
-      "android-browser": [4.2]
-    }
+    "files": "test/main.js",
+    "browsers": [
+      "ie/7..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/7",
+      "ipad/7",
+      "android-browser/latest"
+    ]
   },
   "author": "peerigon <developers@peerigon.com>",
   "license": "MIT"

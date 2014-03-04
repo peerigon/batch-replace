@@ -67,3 +67,10 @@ if (!Array.prototype.forEach)
     }
   };
 }
+
+// @see https://developer.mozilla.org/de/docs/JavaScript/Reference/Global_Objects/Array/isArray#Compatibility
+if(!Array.isArray) {
+  Array.isArray = function (vArg) {
+    return Object.prototype.toString.call(vArg) === "[object Array]";
+  };
+}
