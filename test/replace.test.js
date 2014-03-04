@@ -3,7 +3,7 @@
 var chai = require("chai"),
     sinon = require("sinon"),
     expect = chai.expect,
-    replace = require("../" + require("../package.json").main);
+    replace = require("../lib/replace.js");
 
 chai.Assertion.includeStack = true;
 chai.use(require("sinon-chai"));

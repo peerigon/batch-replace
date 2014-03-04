@@ -2,7 +2,7 @@
 
 var chai = require("chai"),
     expect = chai.expect,
-    replace = require("../" + require("../package.json").main),
+    replace = require("../lib/replace.js"),
     hyperlinks = require("../plugins/hyperlinks.js");
 
 chai.Assertion.includeStack = true;
