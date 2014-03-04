@@ -38,7 +38,9 @@ enhanceMessage("Check out nodejs.org :)");
 ```
 
 [![Build Status](https://travis-ci.org/peerigon/batch-replace.png)](http://travis-ci.org/peerigon/batch-replace)
-[![Dependency Status](https://david-dm.org/peerigon/batch-replace/status.png)](http://david-dm.org/peerigon/batch-replace)
+[![Dependency Status](https://david-dm.org/peerigon/batch-replace/status.png)](http://david-dm.org/peerigon/batch-replace)<br>
+[![browser support](https://ci.testling.com/peerigon/batch-replace.png)
+](https://ci.testling.com/peerigon/batch-replace)
 
 <br />
 
