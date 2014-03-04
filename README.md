@@ -37,7 +37,7 @@ enhanceMessage("Check out nodejs.org :)");
 // returns 'Check out <a href="http://nodejs.org" target="_blank">nodejs.org</a> <img srg="/img/smilies/grin.jpg" />'
 ```
 
-[![Build Status](https://secure.travis-ci.org/peerigon/batch-replace?branch=master)](http://travis-ci.org/peerigon/batch-replace)
+[![Build Status](https://travis-ci.org/peerigon/batch-replace.png)](http://travis-ci.org/peerigon/batch-replace)
 [![Dependency Status](https://david-dm.org/peerigon/batch-replace/status.png)](http://david-dm.org/peerigon/batch-replace)
 
 <br />
