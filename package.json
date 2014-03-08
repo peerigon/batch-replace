@@ -34,13 +34,13 @@
     "harness" : "mocha",
     "files": "test/main.js",
     "browsers": [
-      "ie/7..latest",
-      "chrome/22..latest",
-      "firefox/16..latest",
+      "ie/8..latest",
+      "chrome/27..latest",
+      "firefox/22..latest",
       "safari/latest",
-      "opera/11.0..latest",
-      "iphone/7",
-      "ipad/7",
+      "opera/latest",
+      "iphone/latest",
+      "ipad/latest",
       "android-browser/latest"
     ]
   },
