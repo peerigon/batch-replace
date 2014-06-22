@@ -60,12 +60,35 @@ describe("hyperlinks", function () {
         );
     });
 
+    it("should recognize file endings", function () {
+        expect(
+            replace("Take this url for example: example.com/index.html, it should recognize .html", hyperlinks)
+        ).to.equal(
+            'Take this url for example: <a href="http://example.com/index.html" target="_blank">example.com/index.html</a>, it should recognize .html'
+        );
+        expect(
+            replace("Or this: example.com/index.php?with&query, that's also tricky", hyperlinks)
+        ).to.equal(
+            'Or this: <a href="http://example.com/index.php?with&query" target="_blank">example.com/index.php?with&query</a>, that\'s also tricky'
+        );
+    });
+
     it("should replace multiple patterns with hyperlinks", function () {
         expect(
             replace("example.de some text between example.com/test-path?query=param text at the end", hyperlinks)
         ).to.equal(
             '<a href="http://example.de" target="_blank">example.de</a> ' +
                 'some text between <a href="http://example.com/test-path?query=param" target="_blank">example.com/test-path?query=param</a> text at the end'
+        );
+    });
+
+    it("should also recognize unusual urls", function () {
+        expect(
+            replace("take ftps://user:password@this-particular.example.com/but-there-is?still&some&work#to-do, for example.", hyperlinks)
+        ).to.equal(
+            "take " +
+            '<a href="ftps://user:password@this-particular.example.com/but-there-is?still&some&work#to-do" target="_blank">ftps://user:password@this-particular.example.com/but-there-is?still&some&work#to-do</a>' +
+                ", for example."
         );
     });
 

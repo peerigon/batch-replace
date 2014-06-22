@@ -11,7 +11,7 @@
  * Override this method if you need to customize the returned <a>-tag.
  */
 
-var httpPattern = /^https?:\/\//i;
+var protocol = /^[a-z-]+:\/\//;
 
 function hyperlinksPlugin(replace) {
     replace.module("hyperlinks", hyperlinksPlugin);
@@ -26,7 +26,7 @@ function hyperlinksPlugin(replace) {
  *
  * @type {RegExp}
  */
-hyperlinksPlugin.pattern = /\S{2,256}\.[a-z]{2,3}(\/[^\s,.:]*)?/g;
+hyperlinksPlugin.pattern = /([a-z-]+:\/\/)?[^\s/]{2,256}\.[a-z]{2,3}(\/[^\s]*[^\s,.:;])?/g;
 
 /**
  * @param {object} match
@@ -35,12 +35,17 @@ hyperlinksPlugin.pattern = /\S{2,256}\.[a-z]{2,3}(\/[^\s,.:]*)?/g;
 hyperlinksPlugin.replace = function (match) {
     var url = "";
 
-    if (httpPattern.test(match[0]) === false) {
+    match = match[0];
+
+    // It's common practice that urls are case-insensitive
+    match = match.toLowerCase();
+
+    if (protocol.test(match) === false) {
         url += "http://";
     }
-    url += match[0];
+    url += match;
 
-    return hyperlinksPlugin.hyperlink(url, match[0]);
+    return hyperlinksPlugin.hyperlink(url, match);
 };
 
 /**
