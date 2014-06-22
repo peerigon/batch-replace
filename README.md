@@ -37,16 +37,7 @@ enhanceMessage("Check out nodejs.org :)");
 // returns 'Check out <a href="http://nodejs.org" target="_blank">nodejs.org</a> <img srg="/img/smilies/grin.jpg" />'
 ```
 
-If two replacement modules match both the same string, the latter will succeed:
-
-```javascript
-replace(/abc/g).with("Alphabet")
-    .and(/b/g).with("B")
-    .in("abc");
-// returns 'aBc'
-```
-
-<br />
+<br>
 
 Setup
 ------------------------------------------------------------------------
@@ -60,7 +51,32 @@ Setup
 [![browser support](https://ci.testling.com/peerigon/batch-replace.png)
 ](https://ci.testling.com/peerigon/batch-replace)
 
-<br />
+<br>
+
+Conflicts
+---------
+
+If two replacement modules match both the exact same string, the latter will succeed:
+
+```javascript
+replace(/./g).with(" ")
+    .and(/b/g).with("B")
+    .in("b");
+// returns 'B'
+```
+
+If two replacement modules match parts of the same string, the first match succeeds:
+
+```javascript
+replace(/abc/g).with("ABC")
+    .and(/abc/g).with("Alphabet")
+    .and(/b/g).with("B")
+    .and(/c/g).with("C")
+    .in("abc")
+// returns 'Alphabet'
+```
+
+<br>
 
 Replacement modules
 ------------------------------------------------------------------------
@@ -136,7 +152,7 @@ replace.html().in("This is a mean <script>alert('XSS attack!')</script>");
 // returns 'This is a mean &lt;script&gt;alert(&#x27;XSS attack!&#x27;)&lt;/script&gt;'
 ```
 
-<br />
+<br>
 
 API
 ------------------------------------------------------------------------
@@ -165,7 +181,7 @@ Returns a standalone function that takes a string and runs the configured replac
 
 Publishes the `module` under `replace[name]`. Write replacement modules for common replacement tasks and don't hesitate to create a pull-request so everyone benefits.
 
-<br />
+<br>
 
 Compatibility
 ------------------------------------------------------------------------
@@ -191,7 +207,7 @@ replace("abcd", [
 
 **batch-replace** requires several polyfills for ES5-features, so you should be sure to include [es5-shims](https://github.com/es-shims/es5-shim).
 
-<br />
+<br>
 
 License
 ------------------------------------------------------------------------
