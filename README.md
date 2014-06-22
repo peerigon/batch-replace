@@ -42,10 +42,10 @@ enhanceMessage("Check out nodejs.org :)");
 Setup
 ------------------------------------------------------------------------
 
-[![npm status](https://nodei.co/npm/batch-replace.png?downloads=true&stars=true)](https://npmjs.org/package/batch-replace)
+[![npm status](https://nodei.co/npm/batch-replace.svg?downloads=true&stars=true)](https://npmjs.org/package/batch-replace)
 
-[![build status](https://travis-ci.org/peerigon/batch-replace.png)](http://travis-ci.org/peerigon/batch-replace)
-[![dependencies](https://david-dm.org/peerigon/batch-replace.png)](http://david-dm.org/peerigon/batch-replace)
+[![build status](https://travis-ci.org/peerigon/batch-replace.svg)](http://travis-ci.org/peerigon/batch-replace)
+[![dependencies](https://david-dm.org/peerigon/batch-replace.svg)](http://david-dm.org/peerigon/batch-replace)
 [![coverage status](https://img.shields.io/coveralls/peerigon/batch-replace.svg)](https://coveralls.io/r/peerigon/peerigon/batch-replace?branch=master)
 
 [![browser support](https://ci.testling.com/peerigon/batch-replace.png)
@@ -56,7 +56,7 @@ Setup
 Conflicts
 ---------
 
-If two replacement modules match both the exact same string, the latter will succeed:
+If multiple patterns match both the exact same string, the latter will succeed:
 
 ```javascript
 replace(/./g).with(" ")
@@ -65,13 +65,13 @@ replace(/./g).with(" ")
 // returns 'B'
 ```
 
-If two replacement modules match parts of the same string, the first match succeeds:
+If multiple patterns match parts of the same string, the match with the lower index succeeds:
 
 ```javascript
-replace(/abc/g).with("ABC")
-    .and(/abc/g).with("Alphabet")
-    .and(/b/g).with("B")
-    .and(/c/g).with("C")
+replace(/abc/g).with("ABC")        // index = 0
+    .and(/abc/g).with("Alphabet")  // index = 0
+    .and(/b/g).with("B")           // index = 1
+    .and(/c/g).with("C")           // index = 2
     .in("abc")
 // returns 'Alphabet'
 ```
