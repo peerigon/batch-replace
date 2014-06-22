@@ -5,7 +5,8 @@
   "main": "./lib/replace.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha test/main.js -R spec",
-    "test-browser": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js mocha\\!./test/main.js"
+    "test-browser": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js mocha\\!./test/main.js",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha test/main.js"
   },
   "keywords": [
     "replace",
