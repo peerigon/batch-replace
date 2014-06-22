@@ -5,7 +5,7 @@ var chai = require("chai"),
     expect = chai.expect,
     replace = require("../lib/replace.js");
 
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 chai.use(require("sinon-chai"));
 
 var ab = {

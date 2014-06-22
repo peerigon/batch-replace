@@ -5,7 +5,7 @@ var chai = require("chai"),
     replace = require("../lib/replace.js"),
     hyperlinks = require("../plugins/hyperlinks.js");
 
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 chai.use(require("sinon-chai"));
 
 describe("hyperlinks", function () {
