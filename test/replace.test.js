@@ -105,6 +105,12 @@ describe("replace(str, modules)", function () {
         expect(replace("a a b", ab)).to.equal("b b b");
     });
 
+    it("should throw an error if the requested module is not an object", function () {
+        expect(function () {
+            replace("", [null]);
+        }).to.throw("Unknown module 'null'");
+    });
+
     describe("if str is an empty string", function () {
 
         it("should just return str", function () {
@@ -169,11 +175,24 @@ describe("replace(str, modules)", function () {
 
         it("should apply the first module which matches", function () {
             expect(
-                replace(/abc/g).with("ABC")
-                    .and(/abc/g).with("Alphabet")
-                    .and(/b/g).with("B")
-                    .and(/c/g).with("C")
-                    .in("abc")
+                replace("abc", [
+                    {
+                        pattern: /abc/g,
+                        replace: "ABC"
+                    },
+                    {
+                        pattern: /abc/g,
+                        replace: "Alphabet"
+                    },
+                    {
+                        pattern: /b/g,
+                        replace: "B"
+                    },
+                    {
+                        pattern: /c/g,
+                        replace: "C"
+                    }
+                ])
             ).to.equal("Alphabet");
         });
 
@@ -231,6 +250,17 @@ describe("replace(str, modules)", function () {
             ]);
 
             expect(result).to.equal("1 2222 11 222 111 22 1111 2");
+        });
+
+    });
+
+    describe("when a pattern is not global", function () {
+
+        it("should only replace the first occurrence", function () {
+            expect(replace("aaa", {
+                pattern: /a/,
+                replace: "b"
+            })).to.equal("baa");
         });
 
     });
