@@ -42,21 +42,42 @@ describe("hyperlinks", function () {
         );
     });
 
-    it("should not include punctuations (,.:) at the end of an hyperlink", function () {
+    it("should not include punctuations (,.:;?!) at the end of an hyperlink", function () {
         expect(
             replace("test.example.com/test-path?query=param,", hyperlinks)
         ).to.equal(
-            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>,'
+            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>' +
+            ','
         );
         expect(
             replace("test.example.com/test-path?query=param.", hyperlinks)
         ).to.equal(
-            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>.'
+            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>' +
+            '.'
         );
         expect(
             replace("test.example.com/test-path?query=param:", hyperlinks)
         ).to.equal(
-            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>:'
+            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>' +
+            ':'
+        );
+        expect(
+            replace("test.example.com/test-path?query=param;", hyperlinks)
+        ).to.equal(
+            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>' +
+            ';'
+        );
+        expect(
+            replace("test.example.com/test-path?query=param?", hyperlinks)
+        ).to.equal(
+            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>' +
+            '?'
+        );
+        expect(
+            replace("test.example.com/test-path?query=param!", hyperlinks)
+        ).to.equal(
+            '<a href="http://test.example.com/test-path?query=param" target="_blank">test.example.com/test-path?query=param</a>' +
+            '!'
         );
     });
 

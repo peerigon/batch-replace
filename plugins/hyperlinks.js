@@ -26,7 +26,7 @@ function hyperlinksPlugin(replace) {
  *
  * @type {RegExp}
  */
-hyperlinksPlugin.pattern = /([a-z-]+:\/\/)?[^\s/]{2,256}\.[a-z]{2,3}(\/[^\s]*[^\s,.:;])?/g;
+hyperlinksPlugin.pattern = /([a-z-]+:\/\/)?[^\s/]{2,256}\.[a-z]{2,3}(\/[^\s]*[^\s,.:;?!])?/g;
 
 /**
  * @param {object} match
