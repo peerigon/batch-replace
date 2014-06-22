@@ -11,3 +11,7 @@ Changelog
 - Added html-plugin
 - Fixed hyperlink pattern to recognize all kinds of possible urls
 - Improve behavior with punctuations at the end of a url
+
+### 1.1.1
+
+- Removed toLowerCase() of matched urls
