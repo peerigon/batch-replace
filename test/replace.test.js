@@ -167,13 +167,14 @@ describe("replace(str, modules)", function () {
             expect(replace("b", [everythingToWhitespace, bc])).to.equal("c");
         });
 
-        it("should apply the latter module if both modules are trying to replace parts of the same string", function () {
+        it("should apply the first module which matches", function () {
             expect(
-                replace(/abc/g).with("Alphabet")
+                replace(/abc/g).with("ABC")
+                    .and(/abc/g).with("Alphabet")
                     .and(/b/g).with("B")
                     .and(/c/g).with("C")
                     .in("abc")
-            ).to.equal("aBC");
+            ).to.equal("Alphabet");
         });
 
     });
