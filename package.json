@@ -1,6 +1,6 @@
 {
   "name": "batch-replace",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Perform multiple str.replace() with one operation",
   "main": "./lib/replace.js",
   "scripts": {
