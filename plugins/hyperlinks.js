@@ -1,6 +1,6 @@
 "use strict";
 
-var protocol = /^[a-z-]+:\/\//;
+var protocol = /^[a-z-]+:\/\//i;
 
 /**
  * Replaces all occurrences of url-like patterns with an hyperlink:
@@ -32,19 +32,15 @@ hyperlinksPlugin.pattern = /([a-z-]+:\/\/)?[^\s/]{2,256}\.[a-z]{2,3}(\/[^\s]*[^\
  * @returns {string}
  */
 hyperlinksPlugin.replace = function (match) {
-    var url = "";
+    var firstMatch = match[0],
+        url = "";
 
-    match = match[0];
-
-    // It's common practice that urls are case-insensitive
-    match = match.toLowerCase();
-
-    if (protocol.test(match) === false) {
+    if (protocol.test(firstMatch) === false) {
         url += "http://";
     }
-    url += match;
+    url += firstMatch;
 
-    return hyperlinksPlugin.hyperlink(url, match);
+    return hyperlinksPlugin.hyperlink(url, firstMatch);
 };
 
 /**
