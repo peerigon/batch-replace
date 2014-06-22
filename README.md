@@ -56,7 +56,7 @@ Setup
 Conflicts
 ---------
 
-If multiple patterns match both the exact same string, the latter will succeed:
+If multiple patterns match the exact same string, the latter will succeed:
 
 ```javascript
 replace(/./g).with(" ")
