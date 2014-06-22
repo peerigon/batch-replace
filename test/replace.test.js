@@ -70,17 +70,15 @@ describe("replace", function () {
 describe("replace(pattern)", function () {
 
     it("should provide a nice chainable api for replace operations", function () {
-        // unfortunately we need to escape the nice api so ES3 environments don't
-        // have problems parsing the file
-        var str = replace(/a/g)["with"]("b")
-            .and(/b/g)["with"](function () { return "c"; })
-            ["in"]("ab");
+        var str = replace(/a/g).with("b")
+            .and(/b/g).with(function () { return "c"; })
+            .in("ab");
 
         expect(str).to.equal("bc");
 
-        str = replace(/./g)["with"](" ")
-            .and(/a/g)["with"]("b")
-            ["in"]("ab");
+        str = replace(/./g).with(" ")
+            .and(/a/g).with("b")
+            .in("ab");
 
         expect(str).to.equal("b ");
     });
@@ -105,10 +103,6 @@ describe("replace(str, modules)", function () {
 
     it("should turn modules to an array if it is no array", function () {
         expect(replace("a a b", ab)).to.equal("b b b");
-    });
-
-    it("should apply the latter module if both modules are trying to replace the same string", function () {
-        expect(replace("b", [everythingToWhitespace, bc])).to.equal("c");
     });
 
     describe("if str is an empty string", function () {
@@ -163,6 +157,23 @@ describe("replace(str, modules)", function () {
 
         it("should not modify the str", function () {
             expect(replace("---", [ab])).to.equal("---");
+        });
+
+    });
+
+    describe("when multiple replacements match parts of the same string", function () {
+
+        it("should apply the latter module if both modules are trying to replace the exact same string", function () {
+            expect(replace("b", [everythingToWhitespace, bc])).to.equal("c");
+        });
+
+        it("should apply the latter module if both modules are trying to replace parts of the same string", function () {
+            expect(
+                replace(/abc/g).with("Alphabet")
+                    .and(/b/g).with("B")
+                    .and(/c/g).with("C")
+                    .in("abc")
+            ).to.equal("aBC");
         });
 
     });

@@ -2,4 +2,4 @@
 
 require("./replace.test.js");
 require("./hyperlinks.test.js");
-require("./escapeHTML.test.js");
+require("./html.test.js");

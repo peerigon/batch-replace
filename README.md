@@ -37,6 +37,15 @@ enhanceMessage("Check out nodejs.org :)");
 // returns 'Check out <a href="http://nodejs.org" target="_blank">nodejs.org</a> <img srg="/img/smilies/grin.jpg" />'
 ```
 
+If two replacement modules match both the same string, the latter will succeed:
+
+```javascript
+replace(/abc/g).with("Alphabet")
+    .and(/b/g).with("B")
+    .in("abc");
+// returns 'aBc'
+```
+
 <br />
 
 Setup
@@ -114,6 +123,17 @@ var hyperlinks = require("batch-replace/plugins/hyperlinks");
 hyperlinks.hyperlink = function (url, str) {
     return '<a href="' + url + '">' + str + '</a>';
 };
+```
+
+### html
+
+This module escapes all special html characters like `&` `<` `>` `"` and `'` with their save entity counterparts. Use this module if you need to escape user data to prevent XSS attacks.
+
+```javascript
+replace.use(require("batch-replace/plugins/html"));
+
+replace.html().in("This is a mean <script>alert('XSS attack!')</script>");
+// returns 'This is a mean &lt;script&gt;alert(&#x27;XSS attack!&#x27;)&lt;/script&gt;'
 ```
 
 <br />

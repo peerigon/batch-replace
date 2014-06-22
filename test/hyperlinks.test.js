@@ -8,7 +8,7 @@ var chai = require("chai"),
 chai.config.includeStack = true;
 chai.use(require("sinon-chai"));
 
-describe("hyperlinks", function () {
+describe("(plugin) hyperlinks", function () {
 
     it("should replace actual urls with hyperlinks", function () {
         expect(

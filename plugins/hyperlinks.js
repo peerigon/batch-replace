@@ -1,5 +1,7 @@
 "use strict";
 
+var protocol = /^[a-z-]+:\/\//;
+
 /**
  * Replaces all occurrences of url-like patterns with an hyperlink:
  *
@@ -10,9 +12,6 @@
  * The hyperlink()-method is called with the url and the actual match and returns an html string.
  * Override this method if you need to customize the returned <a>-tag.
  */
-
-var protocol = /^[a-z-]+:\/\//;
-
 function hyperlinksPlugin(replace) {
     replace.module("hyperlinks", hyperlinksPlugin);
 }
