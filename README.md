@@ -46,6 +46,7 @@ Setup
 
 [![build status](https://travis-ci.org/peerigon/batch-replace.svg)](http://travis-ci.org/peerigon/batch-replace)
 [![dependencies](https://david-dm.org/peerigon/batch-replace.svg)](http://david-dm.org/peerigon/batch-replace)
+[![devDependency Status](https://david-dm.org/peerigon/batch-replace/dev-status.svg)](https://david-dm.org/peerigon/batch-replace#info=devDependencies)
 [![coverage status](https://img.shields.io/coveralls/peerigon/batch-replace.svg)](https://coveralls.io/r/peerigon/peerigon/batch-replace?branch=master)
 
 [![browser support](https://ci.testling.com/peerigon/batch-replace.png)
