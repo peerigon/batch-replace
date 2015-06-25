@@ -134,4 +134,13 @@ describe("(plugin) hyperlinks", function () {
         expect(replace.hyperlinks).to.be.a("function");
     });
 
+    it("should not replace strings like '...[A-Za-z]+' as hyperlinks", function () {
+        var stringToReplace = 'This is ...wouh not a link';
+        expect(
+            replace(stringToReplace, hyperlinks)
+        ).to.equal(
+            stringToReplace
+        );
+    });
+
 });
