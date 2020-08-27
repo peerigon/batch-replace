@@ -1,12 +1,11 @@
-batch-replace
-========================================================================
+# batch-replace
+
 **Perform multiple str.replace() with one operation.**
 
 In some situations it's not possible to chain multiple calls of `replace()` because you don't want to pass the result of the first operation to the second:
 
 ```javascript
-"ab".replace(/a/g, "b")
-    .replace(/b/g, "c"); // returns "cc" instead of "bc"
+"ab".replace(/a/g, "b").replace(/b/g, "c"); // returns "cc" instead of "bc"
 ```
 
 With **batch-replace** it's possible to replace all patterns at once:
@@ -14,9 +13,7 @@ With **batch-replace** it's possible to replace all patterns at once:
 ```javascript
 var replace = require("batch-replace");
 
-replace(/a/g).with("b")
-    .and(/b/g).with("c")
-    .in("ab"); // returns bc
+replace(/a/g).with("b").and(/b/g).with("c").in("ab"); // returns bc
 ```
 
 You can even create "replacement modules" for common tasks and to improve readability:
@@ -39,8 +36,7 @@ enhanceMessage("Check out nodejs.org :)");
 
 <br>
 
-Setup
-------------------------------------------------------------------------
+## Setup
 
 [![npm status](https://nodei.co/npm/batch-replace.svg?downloads=true&stars=true)](https://npmjs.org/package/batch-replace)
 
@@ -54,33 +50,33 @@ Setup
 
 <br>
 
-Conflicts
----------
+## Conflicts
 
 If multiple patterns match the exact same string, the latter will succeed:
 
 ```javascript
-replace(/./g).with(" ")
-    .and(/b/g).with("B")
-    .in("b");
+replace(/./g).with(" ").and(/b/g).with("B").in("b");
 // returns 'B'
 ```
 
 If multiple patterns match parts of the same string, the match with the lower index succeeds:
 
 ```javascript
-replace(/abc/g).with("ABC")        // index = 0
-    .and(/abc/g).with("Alphabet")  // index = 0
-    .and(/b/g).with("B")           // index = 1
-    .and(/c/g).with("C")           // index = 2
-    .in("abc")
+replace(/abc/g)
+  .with("ABC") // index = 0
+  .and(/abc/g)
+  .with("Alphabet") // index = 0
+  .and(/b/g)
+  .with("B") // index = 1
+  .and(/c/g)
+  .with("C") // index = 2
+  .in("abc");
 // returns 'Alphabet'
 ```
 
 <br>
 
-Replacement modules
-------------------------------------------------------------------------
+## Replacement modules
 
 A replacement module is an object with a `pattern`- and a `replace`-property:
 
@@ -106,8 +102,8 @@ You can add these modules by calling `module()`:
 
 ```javascript
 replace.module("abcToUppercase", {
-    pattern: /abc/g,
-    replace: "ABC"
+  pattern: /abc/g,
+  replace: "ABC",
 });
 ```
 
@@ -138,7 +134,7 @@ var hyperlinks = require("batch-replace/plugins/hyperlinks");
 // If the text was 'Hi, please take a look at example.com'
 // url will be 'http://example.com' and str will be 'example.com'
 hyperlinks.hyperlink = function (url, str) {
-    return '<a href="' + url + '">' + str + '</a>';
+  return '<a href="' + url + '">' + str + "</a>";
 };
 ```
 
@@ -155,8 +151,7 @@ replace.html().in("This is a mean <script>alert('XSS attack!')</script>");
 
 <br>
 
-API
-------------------------------------------------------------------------
+## API
 
 ### replace(pattern: RegExp)
 
@@ -184,8 +179,7 @@ Publishes the `module` under `replace[name]`. Write replacement modules for comm
 
 <br>
 
-Compatibility
-------------------------------------------------------------------------
+## Compatibility
 
 It is worth noting that the current api is not designed for ES3-environments (IE8 and Android 2.x) due usage of reserved keywords like `with` and `in`. If you need to support these environments and you don't want to use bracket notation (e.g. `["in"]`), you can also use the "ugly api":
 
@@ -195,14 +189,14 @@ Applies all `modules` on the given string and returns the result. Example:
 
 ```javascript
 replace("abcd", [
-    {
-        pattern: /a/g,
-        replace: "b"
-    },
-    {
-        pattern: /b/g,
-        replace: "c"
-    }
+  {
+    pattern: /a/g,
+    replace: "b",
+  },
+  {
+    pattern: /b/g,
+    replace: "c",
+  },
 ]); // returns 'bccd'
 ```
 
@@ -210,7 +204,10 @@ replace("abcd", [
 
 <br>
 
-License
-------------------------------------------------------------------------
+## License
 
 MIT
+
+## Sponsors
+
+[<img src="https://assets.peerigon.com/peerigon/logo/peerigon-logo-flat-spinat.png" width="150" />](https://peerigon.com)
